@@ -1,0 +1,42 @@
+{% extends "posts/base.html" %}
+{% block content %}
+<!-- class="img-responsive center-block" -->
+<img src="{{post.image.url}}" class="img-responsive center-block"  style="max-height: 330px;">
+      <div class="col-md-4 col-md-offset-4">
+            <a href="{%  url 'my_post:post_details' post.id %}"><h1>{{ post.title }}</h1></a>
+            <h4><span class="glyphicon glyphicon-time" aria-hidden="true"> {{ post.publish }}</span></h4>
+            {% if post.draft %}  <h5 style="color:red;">Draft</h5>{% endif %}
+            <hr>
+
+            <br>
+            <p>{{ post.body }}</p>
+            <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+            <br>
+            <hr>
+
+
+            <div class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-numposts="1"  ></div>
+     </div>
+     <br>
+
+{% endblock %}
+
+
+
+
+
+        <!-- <div id="disqus_thread"></div>
+        <script>
+
+        var disqus_config = function () {
+        this.page.identifier = 'post-{{ post.id }}'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://noelsblog-1.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript> -->

@@ -1,0 +1,30 @@
+{% extends "posts/base.html" %}
+{%  load crispy_forms_tags %}
+{% load static %}
+
+{% block head_extra %}
+{{ form.media}}
+
+{% endblock head_extra %}
+
+{% block content %}
+
+<br>
+<br>
+<br>
+    <div class="col-sm-6 col-sm-offset-3">
+        <h1>Form</h1>
+        <form class="" method="post" enctype="multipart/form-data" novalidate>
+            {%  csrf_token %}
+            {{ form|crispy }}
+            <input type="submit" name="" value="Create Post">
+        </form>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endblock %}
+    </div>
