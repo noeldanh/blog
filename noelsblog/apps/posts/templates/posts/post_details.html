@@ -10,10 +10,15 @@
 
             <br>
             <p>{{ post.body }}</p>
+            <div >
+                <p class="lead">Comments</p>
+                {% for comment in comments %}
+                <p>{{comment.content}}</p>
+                {% endfor %}
+            </div>
             <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
             <br>
             <hr>
-
 
             <div class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-numposts="1"  ></div>
      </div>

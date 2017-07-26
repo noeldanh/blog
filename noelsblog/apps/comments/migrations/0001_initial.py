@@ -12,21 +12,19 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
+        ('contenttypes', '0002_remove_content_type_name'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Post',
+            name='Comment',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=255)),
-                ('slug', models.SlugField(unique=True)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('image', models.ImageField(upload_to='media/')),
-                ('body', models.TextField()),
-                ('draft', models.BooleanField(default=False)),
-                ('publish', models.DateField()),
+                ('object_id', models.PositiveIntegerField()),
+                ('content', models.TextField()),
+                ('timestamp', models.DateTimeField(auto_now_add=True)),
+                ('content_type', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='contenttypes.ContentType')),
                 ('user', models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),

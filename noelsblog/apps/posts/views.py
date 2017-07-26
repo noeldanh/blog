@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.contrib import messages
+from django.contrib.contenttypes.models import ContentType
 from django.shortcuts import render, get_object_or_404, redirect, Http404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Post
 from .forms import PostForm
+
+from ..comments.models import Comment
 # Create your views here.
 
 
@@ -49,8 +52,13 @@ def post_create(request):
 
 
 def post_details(request, post_id):
+    instance = get_object_or_404(Post, pk=post_id)
+    content_type = ContentType.objects.get_for_model(Post)
+    obj_id = post_id
+    comments = Comment.objects.filter(content_type=content_type, object_id=obj_id)
     context = {
-        'post': get_object_or_404(Post, pk=post_id)
+        'post': get_object_or_404(Post, pk=post_id),
+        'comments': comments
     }
     return render(request, 'posts/post_details.html', context)
 

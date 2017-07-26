@@ -23,8 +23,8 @@ from django.conf import settings
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     # url(r'^', include('apps.login.urls', namespace='logins')),
-    url(r'^', include('apps.posts.urls', namespace='my_post'))
-    # url(r'^$', posts.views.home, name="home"),
+    url(r'^', include('apps.posts.urls', namespace='my_post')),
+    url(r'^', include('apps.comments.urls', namespace='my_comment')),
     # url(r'^about/$', sitepages.views.about, name="about"),
     # url(r'^posts/(?P<post_id>[0-9]+)/$', posts.views.post_details, name="post_details")
 
